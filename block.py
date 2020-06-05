@@ -25,6 +25,7 @@ from time import sleep
 
 url_filter=[] #url=list()
 redirect='127.0.0.1'
+file_host=r"C:\Windows\System32\drivers\etc\hosts"
 while True:
     url=str(input('please enter the site @example.com End=stop : '))
     #url='end'
@@ -45,7 +46,7 @@ def check(i,url_filter): #check for url_filter items  in line
 while True:
     if d(d.now().year,d.now().month,d.now().day,d.now().hour,hour_start) < d.now() < d(d.now().year,d.now().month,d.now().day,d.now().hour,hour_stop):
         #d.now().min > hour_start or d.now().min < hour_stop:
-        with open("hosts",'r+') as host:
+        with open(file_host,'r+') as host:
             r=host.read()
             for web in url_filter:
                 if web in r:
@@ -55,7 +56,7 @@ while True:
                     #print("Done", web)
                     print("Added")
     else:
-        with open("hosts",'r+') as host:
+        with open(file_host,'r+') as host:
             r=host.readlines() #read lines can use rstrip()
             host.seek(0) #from start index in file as after writng it will start from end
             for i in r:
